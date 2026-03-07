@@ -7,6 +7,10 @@ package frc.robot;
 import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
+import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.units.measure.Time;
+import swervelib.math.Matter;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -20,22 +24,34 @@ import com.revrobotics.spark.config.SparkFlexConfig;
  */
 public final class Constants {
 
-  public static final class DriveConstants {
-    // Motor controller IDs for drivetrain motors
-    public static final int LEFT_LEADER_ID = 1;
-    public static final int LEFT_FOLLOWER_ID = 3;
-    public static final int RIGHT_LEADER_ID = 2;
-    public static final int RIGHT_FOLLOWER_ID = 4;
+  // public static final class DriveConstants {
+  //   // Motor controller IDs for drivetrain motors
+  //   public static final int LEFT_LEADER_ID = 1;
+  //   public static final int LEFT_FOLLOWER_ID = 3;
+  //   public static final int RIGHT_LEADER_ID = 2;
+  //   public static final int RIGHT_FOLLOWER_ID = 4;
+
+  public static final double ROBOT_MASS = (80) * 0.453592; // 80 lbs * kg per pound
+  public static final Matter CHASSIS    = new Matter(new Translation3d(0, 0, Units.inchesToMeters(8)), ROBOT_MASS); // not sure what this is for exactly
+  public static final double LOOP_TIME  = 0.13; //s, 20ms + 110ms sprk max velocity lag
+  public static final double MAX_SPEED  = Units.feetToMeters(14.5); // seems fast but no dent in floor yet lol
+    
+  // block
+
+    public static final class DrivebaseConstants
+  {
+
 
     // Current limit for drivetrain motors. 60A is a reasonable maximum to reduce
     // likelihood of tripping breakers or damaging CIM motors
     public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
+    public static final Time WHEEL_LOCK_TIME = null;
   }
 
   public static final class FuelConstants {
     // Motor controller IDs for Fuel Mechanism motors
-    public static final int LEFT_INTAKE_LAUNCHER_MOTOR_ID = 5;
-    public static final int RIGHT_INTAKE_LAUNCHER_MOTOR_ID = 6;
+    public static final int LEFT_INTAKE_LAUNCHER_MOTOR_ID = 12;
+    public static final int RIGHT_INTAKE_LAUNCHER_MOTOR_ID = ;
     public static final int INDEXER_MOTOR_ID = 8;
 
     // Current limit for fuel mechanism motors.
@@ -56,7 +72,7 @@ public final class Constants {
 
   public static final class ClimbConstatns {
     // Motor controller IDs for Climb motor
-    public static final int CLIMBER_MOTOR_ID = 7;
+    public static final int CLIMBER_MOTOR_ID = 11;
 
     // Current limit for climb motor
     public static final int CLIMBER_MOTOR_CURRENT_LIMIT = 40;
@@ -66,15 +82,24 @@ public final class Constants {
   }
 
   public static final class OperatorConstants {
+  
+
+    // Joystick Deadband
+    public static final double DEADBAND        = 0.1;
+    public static final double LEFT_Y_DEADBAND = 0.1;
+    public static final double RIGHT_X_DEADBAND = 0.1;
+    public static final double TURN_CONSTANT    = 6;
+  }
+
 
     // Port constants for driver and operator controllers. These should match the
     // values in the Joystick tab of the Driver Station software
-    public static final int DRIVER_CONTROLLER_PORT = 0;
+    // public static final int DRIVER_CONTROLLER_PORT = 0;
     public static final int OPERATOR_CONTROLLER_PORT = 1;
 
     // This value is multiplied by the joystick value when rotating the robot to
     // help avoid turning too fast and beign difficult to control
-    public static final double DRIVE_SCALING = 0.7;
-    public static final double ROTATION_SCALING = 0.8;
+    // public static final double DRIVE_SCALING = 0.7;
+    // public static final double ROTATION_SCALING = 0.8;
   } 
-}
+

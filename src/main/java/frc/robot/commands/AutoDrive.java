@@ -5,15 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.CANDriveSubsystem;
+import frc.robot.subsystems.SwerveSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class AutoDrive extends Command {
   /** Creates a new Drive. */
-  CANDriveSubsystem driveSubsystem;
+  SwerveSubsystem driveSubsystem;
   double xSpeed, zRotation;
 
-  public AutoDrive(CANDriveSubsystem driveSystem, double xSpeed, double zRotation) {
+  public AutoDrive(SwerveSubsystem driveSystem, double xSpeed, double zRotation) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveSystem);
     driveSubsystem = driveSystem;
@@ -29,16 +29,16 @@ public class AutoDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   // Setting the values here instead of in initialize feeds the watchdog on the
   // arcade drive object
-  @Override
-  public void execute() {
-    driveSubsystem.driveArcade(xSpeed, zRotation);
-  }
+  // @Override
+  // public void execute() {
+  //   driveSubsystem.driveArcade(xSpeed, zRotation);
+  // }
 
   // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    driveSubsystem.driveArcade(0, 0);
-  }
+  // @Override
+  // public void end(boolean interrupted) {
+  //   driveSubsystem.driveArcade(0, 0);
+  // }
 
   // Returns true when the command should end.
   @Override
