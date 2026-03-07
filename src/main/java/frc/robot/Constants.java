@@ -45,7 +45,8 @@ public final class Constants {
     // Current limit for drivetrain motors. 60A is a reasonable maximum to reduce
     // likelihood of tripping breakers or damaging CIM motors
     public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
-    public static final Time WHEEL_LOCK_TIME = null;
+    public static final Time WHEEL_LOCK_TIME = 0.5; //TODO CONVERT DOUBLE TO TIME OBJECT (0.5 seconds)
+    // https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Time.html
   }
 
   public static final class FuelConstants {
