@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.util.concurrent.TimeUnit;
+
 import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
@@ -45,7 +47,7 @@ public final class Constants {
     // Current limit for drivetrain motors. 60A is a reasonable maximum to reduce
     // likelihood of tripping breakers or damaging CIM motors
     public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
-    public static final Time WHEEL_LOCK_TIME = 0.5; //TODO CONVERT DOUBLE TO TIME OBJECT (0.5 seconds)
+    public static final double WHEEL_LOCK_TIME = 0.5;//Time.ofBaseUnits(0.5, Units.Seconds); //TODO CONVERT DOUBLE TO TIME OBJECT (0.5 seconds)
     // https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Time.html
   }
 
@@ -53,7 +55,7 @@ public final class Constants {
     // Motor controller IDs for Fuel Mechanism motors
     public static final int LEFT_INTAKE_LAUNCHER_MOTOR_ID = 12;
     public static final int RIGHT_INTAKE_LAUNCHER_MOTOR_ID = 10; // add ID to this hi guys
-    public static final int INDEXER_MOTOR_ID = 8;
+    public static final int INDEXER_MOTOR_ID = 9;
 
     // Current limit for fuel mechanism motors.
     public static final int INDEXER_MOTOR_CURRENT_LIMIT = 80;
