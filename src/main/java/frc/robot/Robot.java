@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.studica.frc.AHRS;
+import com.studica.frc.AHRS.NavXComType;
+
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -11,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +33,8 @@ public class Robot extends TimedRobot {
   private Timer disabledTimer;
   // From YAGSL ^ 
 
+  // TEMP FOR 365
+  // AHRS navx = new AHRS(NavXComType.kMXP_SPI);
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -76,6 +82,11 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    //TEMP FOR 365
+    // SmartDashboard.putNumber("NAVX YAW", navx.getYaw());
+    // SmartDashboard.putNumber("NAVX PITCH", navx.getPitch());
+    // SmartDashboard.putNumber("NAVX ROLL", navx.getRoll());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
