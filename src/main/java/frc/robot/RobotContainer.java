@@ -54,7 +54,7 @@ public class RobotContainer {
 //  private final CANDriveSubsystem driveSubsystem = new CANDriveSubsystem();
   private final CANFuelSubsystem fuelSubsystem = new CANFuelSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-  private final SwerveSubsystem       drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
+  private final SwerveSubsystem  drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
                                                                                 "swerve/neo"));
 
 
@@ -97,15 +97,9 @@ public class RobotContainer {
     //Add a simple auto option to have the robot drive forward for 1 second then stop
     autoChooser.addOption("Drive Forward", drivebase.driveForward().withTimeout(1));
 
-    //Add a simple auto option to have the robot drive forward for 1 second then stop
-//     autoChooser.addOption("Shoot", 
-//       new SequentialCommandGroup(
-//         fuelSubsystem
-// .setIntakeLauncherRoller(
-//             SmartDashboard.getNumber("Launching launcher roller value", -0.85)),
-//         fuelSubsystem.setFeederRoller(SmartDashboard.getNumber("Launching feeder roller value", -0.6))
-    //   )
-    // );
+    // Add a simple auto option to have the robot shoot fuel out of the launcher.
+    autoChooser.addOption("Launch", new LaunchSequence(fuelSubsystem).withTimeout(10));
+
     
     //Put the autoChooser on the SmartDashboard
     SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -114,7 +108,9 @@ public class RobotContainer {
     // Set the options to show up in the Dashboard for selecting auto modes. If you
     // add additional auto modes you can add additional lines here with
     // autoChooser.addOption
-//    autoChooser.setDefaultOption("Autonomous", new ExampleAuto(driveSubsystem, fuelSubsystem));
+
+    // Add a drive forward for 3 seconds then launch fuel.
+   autoChooser.setDefaultOption("DriveAndLaunch", new ExampleAuto(drivebase, fuelSubsystem));
 
 
   }

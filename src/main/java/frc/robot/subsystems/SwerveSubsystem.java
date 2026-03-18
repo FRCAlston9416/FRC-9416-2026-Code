@@ -151,6 +151,18 @@ public class SwerveSubsystem extends SubsystemBase
     }).finallyDo(() -> swerveDrive.drive(new Translation2d(0, 0), 0, false, false));
   }
 
+  /**
+   * Returns a Command that tells the robot to drive backward until the command ends.
+   *
+   * @return a Command that tells the robot to drive backward until the command ends
+   */
+  public Command driveBackward()
+  {
+    return run(() -> {
+      swerveDrive.drive(new Translation2d(-1, 0), 0, false, false);
+    }).finallyDo(() -> swerveDrive.drive(new Translation2d(0, 0), 0, false, false));
+  }
+
 
   /**
    * Replaces the swerve module feedforward with a new SimpleMotorFeedforward object.
