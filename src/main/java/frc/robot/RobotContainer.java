@@ -33,6 +33,7 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import frc.robot.Constants.OperatorConstants;
 import java.io.File;
@@ -95,6 +96,16 @@ public class RobotContainer {
 
     //Add a simple auto option to have the robot drive forward for 1 second then stop
     autoChooser.addOption("Drive Forward", drivebase.driveForward().withTimeout(1));
+
+    //Add a simple auto option to have the robot drive forward for 1 second then stop
+//     autoChooser.addOption("Shoot", 
+//       new SequentialCommandGroup(
+//         fuelSubsystem
+// .setIntakeLauncherRoller(
+//             SmartDashboard.getNumber("Launching launcher roller value", -0.85)),
+//         fuelSubsystem.setFeederRoller(SmartDashboard.getNumber("Launching feeder roller value", -0.6))
+    //   )
+    // );
     
     //Put the autoChooser on the SmartDashboard
     SmartDashboard.putData("Auto Chooser", autoChooser);
