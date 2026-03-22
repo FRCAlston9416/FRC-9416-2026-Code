@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.cameraserver.CameraServer;
+
 import static frc.robot.Constants.OperatorConstants.*;
 
 import frc.robot.commands.AutoDrive;
@@ -50,6 +52,7 @@ import swervelib.SwerveInputStream;
  */
 public class RobotContainer {
   private static final int OPERATOR_CONTROLLER_PORT = 0;
+  
   // The robot's subsystems
 //  private final CANDriveSubsystem driveSubsystem = new CANDriveSubsystem();
   private final CANFuelSubsystem fuelSubsystem = new CANFuelSubsystem();
@@ -81,18 +84,30 @@ public class RobotContainer {
                                                             .scaleTranslation(0.8)
                                                             .allianceRelativeControl(true);
 
+
+// slow mode
+  SwerveInputStream driveAngularVelocitySlowMode = SwerveInputStream.of(drivebase.getSwerveDrive(),
+                                                                () -> operatorController.getLeftY() * -1,
+                                                                () -> operatorController.getLeftX() * -1)
+                                                            .withControllerRotationAxis(operatorController::getRightX)
+                                                            .deadband(OperatorConstants.DEADBAND)
+                                                            .scaleTranslation(0.2)
+                                                            .scaleRotation(0.2)
+                                                            .allianceRelativeControl(true);
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer()
   {
+    CameraServer.startAutomaticCapture();
     // Configure the trigger bindings
     configureBindings();
     DriverStation.silenceJoystickConnectionWarning(false);
     // YAGSL has set to true btw ^
 
-    //Set the default auto (do nothing) 
-    autoChooser.setDefaultOption("Do Nothing", Commands.none());
+    //Add an option to do nothing in-case of alliance partner collison
+    autoChooser.addOption("Do Nothing", Commands.none());
 
     //Add a simple auto option to have the robot drive forward for 1 second then stop
     autoChooser.addOption("Drive Forward", drivebase.driveForward().withTimeout(1));
@@ -152,7 +167,12 @@ public class RobotContainer {
     // Below is from YAGSL
   {
     Command driveFieldOrientedAnglularVelocity = drivebase.driveFieldOriented(driveAngularVelocity);
-      drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+
+    Command driveFieldOrientedAnglularVelocitySlowMode = drivebase.driveFieldOriented(driveAngularVelocitySlowMode);
+    
+    drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+
+    operatorController.rightTrigger(0.2).whileTrue(driveFieldOrientedAnglularVelocitySlowMode);
 
     fuelSubsystem.setDefaultCommand(fuelSubsystem.run(() -> fuelSubsystem.stop()));
 

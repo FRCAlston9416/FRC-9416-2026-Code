@@ -24,7 +24,7 @@ public class ExampleAuto extends SequentialCommandGroup {
 
     // new swerve auto
     // TODO: test to calibrate time and also direction (can switch to driveBackward)
-    drivebase.driveForward().withTimeout(3),
+    drivebase.driveForward().withTimeout(1.1),
 
     // Spin up the launcher for 0.75 second and then launch balls for 9.25 seconds, for a
     // total of 10 seconds

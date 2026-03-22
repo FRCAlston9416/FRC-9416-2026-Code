@@ -33,7 +33,7 @@ public final class Constants {
   //   public static final int RIGHT_LEADER_ID = 2;
   //   public static final int RIGHT_FOLLOWER_ID = 4;
 
-  public static final double ROBOT_MASS = (80) * 0.453592; // 80 lbs * kg per pound
+  public static final double ROBOT_MASS = (81.7) * 0.45359237; // 80 lbs * kg per pound
   public static final Matter CHASSIS    = new Matter(new Translation3d(0, 0, Units.inchesToMeters(8)), ROBOT_MASS); // not sure what this is for exactly
   public static final double LOOP_TIME  = 0.13; //s, 20ms + 110ms sprk max velocity lag
   public static final double MAX_SPEED  = Units.feetToMeters(14.5); // seems fast but no dent in floor yet lol
@@ -58,19 +58,18 @@ public final class Constants {
     public static final int INDEXER_MOTOR_ID = 9;
 
     // Current limit for fuel mechanism motors.
-    public static final int INDEXER_MOTOR_CURRENT_LIMIT = 80;
-    public static final int LAUNCHER_MOTOR_CURRENT_LIMIT = 80;
+    public static final int INDEXER_MOTOR_CURRENT_LIMIT = 90;
+    public static final int LAUNCHER_MOTOR_CURRENT_LIMIT = 90;
 
     // All values likely need to be tuned based on your robot
     public static final double INDEXER_INTAKING_PERCENT = 0.8; 
-    public static final double INDEXER_LAUNCHING_PERCENT = -0.6;
-    public static final double INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT = 0.5;
+    public static final double INDEXER_LAUNCHING_PERCENT = -1;
+    public static final double INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT = 0.2;
 
     public static final double INTAKE_INTAKING_PERCENT = -0.6;
-    public static final double LAUNCHING_LAUNCHER_PERCENT = -0.85;
-    public static final double INTAKE_EJECT_PERCENT = 0.8;
-
-    public static final double SPIN_UP_SECONDS = 0.75;
+    public static final double LAUNCHING_LAUNCHER_PERCENT = -1.0;
+    public static final double INTAKE_EJECT_PERCENT = 0.80;
+    public static final double SPIN_UP_SECONDS = 1.4;
   }
 
   public static final class ClimbConstatns {
